@@ -7,12 +7,12 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = {
-    nixvim,
-    flake-parts,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { nixvim
+    , flake-parts
+    , ...
+    } @ inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -20,31 +20,33 @@
         "aarch64-darwin"
       ];
 
-      perSystem = {
-        pkgs,
-        system,
-        ...
-      }: let
-        nixvimLib = nixvim.lib.${system};
-        nixvim' = nixvim.legacyPackages.${system};
-        nixvimModule = {
-          inherit pkgs;
-          module = import ./config;
-          extraSpecialArgs = {
-            # inherit inputs;
+      perSystem =
+        { pkgs
+        , system
+        , ...
+        }:
+        let
+          nixvimLib = nixvim.lib.${system};
+          nixvim' = nixvim.legacyPackages.${system};
+          nixvimModule = {
+            inherit pkgs;
+            module = import ./config;
+            extraSpecialArgs = {
+              # inherit inputs;
+            };
+          };
+          nvim = nixvim'.makeNixvimWithModule nixvimModule;
+        in
+        {
+          # `nix flake check .`
+          checks = {
+            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+          };
+
+          # `nix run .`
+          packages = {
+            default = nvim;
           };
         };
-        nvim = nixvim'.makeNixvimWithModule nixvimModule;
-      in {
-        # `nix flake check .`
-        checks = {
-          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-        };
-
-        # `nix run .`
-        packages = {
-          default = nvim;
-        };
-      };
     };
 }

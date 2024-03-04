@@ -60,6 +60,8 @@
     };
 
     cmp-emoji.enable = true;
+    cmp-cmdline.enable = true;
+    cmp-cmdline-history.enable = true;
 
     nvim-cmp = {
       enable = true;
