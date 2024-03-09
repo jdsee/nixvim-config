@@ -59,32 +59,39 @@
       };
     };
 
+    friendly-snippets.enable = true;
+    cmp_luasnip.enable = true;
+    cmp-path.enable = true;
     cmp-emoji.enable = true;
     cmp-cmdline.enable = true;
     cmp-cmdline-history.enable = true;
+    cmp-nvim-lsp.enable = true;
+    cmp-nvim-lsp-document-symbol.enable = true;
+    cmp-nvim-lsp-signature-help.enable = true;
 
-    nvim-cmp = {
+    cmp = {
       enable = true;
       autoEnableSources = true;
-      sources = [
-        { name = "nvim_lsp"; }
-        { name = "path"; }
-        { name = "buffer"; }
-      ];
-
-      mapping = {
-        "<C-Space>" = "cmp.mapping.complete()";
-        "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-        "<C-e>" = "cmp.mapping.close()";
-        "<C-f>" = "cmp.mapping.scroll_docs(4)";
-        "<C-y>" = "cmp.mapping.confirm({ select = true })";
-        "<C-p>" = {
-          action = "cmp.mapping.select_prev_item()";
-          modes = [ "i" "s" ];
+      settings = {
+        experimental = {
+          ghostText = true;
         };
-        "<C-n>" = {
-          action = "cmp.mapping.select_next_item()";
-          modes = [ "i" "s" ];
+
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+
+        mapping = {
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-e>" = "cmp.mapping.close()";
+          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-y>" = "cmp.mapping.confirm({ select = true })";
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
         };
       };
     };
