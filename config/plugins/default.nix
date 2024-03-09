@@ -5,6 +5,7 @@
     ./lsp.nix
     ./telescope.nix
     ./todo-comment.nix
+    ./git-worktree.nix
   ];
 
   extraPlugins = with pkgs.vimPlugins; [
