@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./autocommands.nix
     ./options.nix
     ./keymaps.nix
     ./plugins
