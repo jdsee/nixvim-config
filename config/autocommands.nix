@@ -4,6 +4,9 @@
     YankHighlight = {
       clear = true;
     };
+    TextFileSettings = {
+      clear = true;
+    };
   };
   autoCmd = [
     {
@@ -16,6 +19,13 @@
           vim.highlight.on_yank { timeout = 100 }
         end
       '';
+    }
+    {
+      event = "BufEnter";
+      pattern = [ "*.md" "*.adoc" "*.tex" "*.txt" "*.typ" ];
+      group = "TextFileSettings";
+      desc = "Activate spellcheck and line wraps for text files";
+      command = "setlocal spell wrap";
     }
   ];
 }
