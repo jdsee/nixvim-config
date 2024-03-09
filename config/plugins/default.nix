@@ -1,11 +1,13 @@
 { pkgs, lib, ... }:
 {
   imports = [
+    ./conform.nix
+    ./git-worktree.nix
     ./incline.nix
     ./lsp.nix
     ./telescope.nix
     ./todo-comment.nix
-    ./git-worktree.nix
+    ./yanky.nix
   ];
 
   extraPlugins = with pkgs.vimPlugins; [
