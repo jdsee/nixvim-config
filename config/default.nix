@@ -8,7 +8,10 @@
   ];
 
   config = {
-    colorschemes.tokyonight.enable = true;
+    colorschemes.tokyonight = {
+      enable = true;
+      transparent = true;
+    };
     clipboard.providers.wl-copy.enable = true;
   };
 }
