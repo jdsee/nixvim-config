@@ -5,6 +5,7 @@
     ./git-worktree.nix
     ./incline.nix
     ./lsp.nix
+    ./lualine.nix
     ./telescope.nix
     ./todo-comment.nix
     ./yanky.nix
@@ -15,7 +16,7 @@
   ];
 
   plugins = {
-    barbar.enable = true;
+    bufferline.enable = true;
     comment-nvim.enable = true;
     fidget.enable = true;
     gitsigns.enable = true;
@@ -24,7 +25,6 @@
     inc-rename.enable = true;
     indent-blankline.enable = true;
     lint.enable = true;
-    lualine.enable = true;
     navbuddy.enable = true;
     navic.enable = true;
     nvim-autopairs.enable = true;
@@ -34,21 +34,5 @@
     trouble.enable = true;
     vim-matchup.enable = true;
     wilder.enable = true;
-
-    obsidian = {
-      enable = false; # TODO: enable
-      workspaces = [
-        {
-          name = "My Notes";
-          path = "/home/jdsee/mynotes";
-        }
-      ];
-
-      dailyNotes = {
-        folder = "dailies";
-        dateFormat = "%Y-%m-%d";
-        # template = nil; TODO: Add template
-      };
-    };
   };
 }
