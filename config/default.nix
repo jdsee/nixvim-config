@@ -12,6 +12,9 @@
       enable = true;
       transparent = true;
     };
+
     clipboard.providers.wl-copy.enable = true;
+
+    luaLoader.enable = true;
   };
 }
