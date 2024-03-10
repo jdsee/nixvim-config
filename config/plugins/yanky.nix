@@ -7,6 +7,11 @@
 
   keymaps = [
     {
+      key = "<leader>fy";
+      action = "<cmd>YankyRingHistory<cr>";
+      mode = "n";
+    }
+    {
       key = "y";
       action = "<Plug>(YankyYank)";
       mode = [ "n" "x" ];
